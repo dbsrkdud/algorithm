@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class baekjoon_17103 {
@@ -12,21 +13,52 @@ public class baekjoon_17103 {
         Scanner sc = new Scanner(System.in);
         int cnt = sc.nextInt();
 
-        // 테스트 케이스 개수
-        int[] arr = new int[cnt];
+        ArrayList result = new ArrayList<>();
 
-        for(int i = 0; i < cnt; i++){
-            arr[i] = sc.nextInt();
-        }
+        for(int i = 0; i < cnt; i++) {
 
-        for(int i = 0; i < arr.length; i ++){
-            int test = arr[i];
+            int num = sc.nextInt();
 
-            for(int j = 2; i < test / 2; j++){
-                int k = test - j;
+            int x = 0;
+            int y = 0;
+            int n = 0;
+            boolean xPrime = true;
+            boolean yPrime = true;
 
+            for (int a = 2; a <= num / 2; a++) {
+                x = a;
+                y = num - a;
+
+                xPrime = true;
+                yPrime = true;
+
+                for (int j = 2; j < x; j++) {
+                    if (x % j == 0) {
+                        xPrime = false;
+                        break;
+                    }
+                }
+
+                for (int k = 2; k < y; k++) {
+                    if (y % k == 0) {
+                        yPrime = false;
+                        break;
+                    }
+                }
+
+                if ((xPrime == true) && (yPrime == true)) {
+                    n++;
+                }
             }
+            result.add(n);
 
         }
+
+        for(int i = 0; i < result.size(); i++){
+            System.out.println(result.get(i));
+        }
+
+        sc.close();
+
     }
 }
